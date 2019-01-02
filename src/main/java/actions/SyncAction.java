@@ -5,18 +5,21 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
 import org.jetbrains.annotations.NotNull;
+import service.YalantisPluginService;
 import service.YalantisPluginServiceImpl;
 import utils.PluginIcons;
 
 public class SyncAction extends AnAction {
+
+    private YalantisPluginServiceImpl service = ((YalantisPluginServiceImpl) YalantisPluginService.getInstance());
 
     public SyncAction() {
         super("Hello", "Easy description", PluginIcons.BASE_ACTION);
     }
 
     public void actionPerformed(@NotNull AnActionEvent event) {
-        YalantisPluginServiceImpl.isActionPerformed = true;
-        if (YalantisPluginServiceImpl.PATH == null || YalantisPluginServiceImpl.PATH.isEmpty()) {
+        service.isActionPerformed = true;
+        if (service.PATH == null || service.PATH.isEmpty()) {
             PathAction action = new PathAction();
             action.actionPerformed(event);
         } else {
@@ -31,11 +34,10 @@ public class SyncAction extends AnAction {
     }
 
     public void performActionFromService(@NotNull AnActionEvent event) {
-        if (!YalantisPluginServiceImpl.isActionPerformed) {
-            YalantisPluginServiceImpl.isActionPerformed = true;
+        if (!service.isActionPerformed) {
+            service.isActionPerformed = true;
             actionPerformed(event);
         }
     }
-
 
 }

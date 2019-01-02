@@ -10,7 +10,7 @@ import utils.PluginIcons;
 
 public class PathAction extends AnAction {
 
-    public PathAction() {
+    PathAction() {
         super(null, null, PluginIcons.BASE_ACTION);
     }
 
@@ -20,4 +20,5 @@ public class PathAction extends AnAction {
         String path = Messages.showInputDialog("Set git path to the template project", "Settings", null);
         service.setPath(path, event);
     }
+
 }
