@@ -1,0 +1,44 @@
+<idea-plugin>
+    <id>com.yalantis.templates-plugin</id>
+    <name>Yalantis Project</name>
+    <vendor email="mr.re66it@gmail.com" url="http://www.Yalantis.com">Yalantis</vendor>
+
+    <description><![CDATA[
+    Yalantis plugin for projects creating by template<br>
+    ]]></description>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <applicationService serviceInterface="service.YalantisPluginService"
+                            serviceImplementation="service.YalantisPluginServiceImpl"/>
+    </extensions>
+
+    <actions>
+
+        <action id="YalantisPlugin.Sync"
+                class="actions.SyncAction"
+                text="Yalantis Sync" description="Yalantis sync with template project">
+            <add-to-group group-id="NavBarToolBar" anchor="last"/>
+            <add-to-group group-id="WelcomeScreen.Configure" anchor="last"/>
+        </action>
+
+        <group id="YalantisPlugin.Menu"
+               text="Yalantis plugin"
+               description="Yalantis menu"
+               icon="/icons/yalantis.png"
+               popup="true">
+
+            <action id="Yalantis.Settings"  text="Settings" description="Yalantis settings path"  icon="/icons/yalantis.png" class="actions.PathAction"/>
+
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </group>
+
+    </actions>
+
+    <application-components>
+        <component>
+            <implementation-class>service.YalantisPluginServiceImpl</implementation-class>
+        </component>
+    </application-components>
+
+</idea-plugin>
